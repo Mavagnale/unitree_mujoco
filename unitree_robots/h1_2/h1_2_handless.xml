@@ -325,4 +325,16 @@
     <framepos name="frame_pos" objtype="site" objname="imu" />
     <framelinvel name="frame_vel" objtype="site" objname="imu" />
   </sensor>
+
+  <equality>
+    <weld body1="pelvis" body2="world"/>
+  </equality> 
+<!--
+ <equality>
+    <weld body1="left_ankle_pitch_link" body2="world"/>
+    <weld body1="left_ankle_roll_link" body2="world"/>
+    <weld body1="right_ankle_pitch_link" body2="world"/>
+    <weld body1="right_ankle_roll_link" body2="world"/>
+  </equality> 
+-->
 </mujoco>
