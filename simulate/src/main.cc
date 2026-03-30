@@ -554,6 +554,10 @@ void PhysicsThread(mj::Simulate *sim, const char *filename)
       free(ctrlnoise);
       ctrlnoise = static_cast<mjtNum *>(malloc(sizeof(mjtNum) * m->nu));
       mju_zero(ctrlnoise, m->nu);
+      sim->opt.flags[mjVIS_TRANSPARENT] = 1;
+      sim->opt.flags[mjVIS_COM] = 1;
+      sim->opt.flags[mjVIS_CONTACTPOINT] = 1;
+      sim->opt.flags[mjVIS_CONTACTFORCE] = 1;      
     }
     else
     {
@@ -688,7 +692,7 @@ int main(int argc, char **argv)
   // start physics thread
   std::thread physicsthreadhandle(&PhysicsThread, sim.get(), param::config.robot_scene.c_str());
   // start simulation UI loop (blocking call)
-  glfwSetKeyCallback(static_cast<mj::GlfwAdapter*>(sim->platform_ui.get())->window_,user_key_cb);
+  // glfwSetKeyCallback(static_cast<mj::GlfwAdapter*>(sim->platform_ui.get())->window_,user_key_cb);
   sim->RenderLoop();
   physicsthreadhandle.join();
 
